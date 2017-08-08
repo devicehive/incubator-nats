@@ -1,0 +1,17 @@
+{
+  "name": "nats-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nats": "^0.7.20",
+    "node-nats-streaming": "0.0.26",
+    "pino": "^4.7.1",
+    "sleep": "^5.1.1"
+  }
+}
