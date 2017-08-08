@@ -2,14 +2,13 @@
 
 const cluster_id = 'devicehive';
 
-const client_id = 'devicehive-consumer-2';
+const client_id = 'devicehive-consumer-' + new Date().getTime().toString();
 const queue_group = 'minion';
 const topic = 'device-data';
 const receive_only_new = true;
 
 const opts = {
-        url: 'nats://127.0.0.1:4222',
-        maxPubAcksInflight: 500000
+        url: 'nats://127.0.0.1:4222'
 };
 
 const   stan    = require('node-nats-streaming').connect(cluster_id, client_id, opts),
@@ -28,6 +27,8 @@ stan
 
 function start() {
     let opts = stan.subscriptionOptions();
+    opts.setDurableName('consumer');
+    opts.setMaxInFlight(1000000);
     // opts.setStartWithLastReceived();
     if(!receive_only_new) {
         opts.setDeliverAllAvailable();
